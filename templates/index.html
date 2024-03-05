@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Classifier</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #ced4da;
+        font-size: 20px;
+        padding: 15px;
+        /* Increase the height of the input field */
+        height: 60px;
+        /* Increase the width of the input field */
+        width: 100%;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: none;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 10px; /* Make the button rounded */
+        box-shadow: none;
+        transition: background-color 0.3s;
+        font-size: 20px;
+        padding: 15px;
+        display: block;
+        margin: 0 auto; /* Center the button */
+        width: 80%; /* Set button width */
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-size: 22px; /* Increase the font size */
+
+            }
+
+    /* Animation */
+    .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 100%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    .fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    /* Custom styles */
+    .form-control:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+
+    .btn:active {
+        background-color: #004999;
+    }
+
+    .fa-spinner {
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="container animated fadeInUp">
+        <h1 class="text-center">News Classifier</h1>
+        <form method="post" action="/predict">
+            <div class="form-group">
+                <label for="title">Enter a news title:</label>
+                <div class="input-group">
+                    <input type="text" id="title" name="title" class="form-control" required>
+                </div>
+            </div>
+            <!-- Center and style the search button -->
+            <button class="btn btn-outline-secondary" type="submit">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+        {% if title %}
+        <div class="result">
+            <p><strong>Entered Title:</strong> {{ title }}</p>
+            <p><strong>Result:</strong> {{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
